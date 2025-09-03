@@ -1,0 +1,5 @@
+POSTGRES_USER="DB username"
+POSTGRES_PASSWORD="DB password"
+DATABASE_PORT="DB portnumber"
+DATABASE_NAME="DB name"
+DATABASE_HOST="DB hostname"
