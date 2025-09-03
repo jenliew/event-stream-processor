@@ -18,7 +18,7 @@ This project simulates a simplified demand-side platform (DSP) workflow for digi
 
 ## High-Level Architecture
 
-This the high level of the demmand_link component architecture.
+This the high level of the components for the architecture.
 
 ![alt text](misc/image.png)
 
@@ -93,23 +93,38 @@ This the high level of the demmand_link component architecture.
 ---
 
 
-## Running the project
+## Running the application
+
+Make sure `.env` is existed in the same directory with docker_compose.yml. Can copy `.env.cp` as `.env` and edit the parameter as required.
+
+Make sure Docker and Docker Compose are installed.
+```bash
+docker-compose up --build
+```
+
+Access the API at:
+```
+http://localhost:8000
+```
+
+
+## Running the application (manually on terminal)
 ### Install Dependencies
 ```bash
 # Make sure poetry is available in your environment.
 poetry install
 
 ```
-### Running simple and dummy mock DSP API
+### Running simple and dummy mock DSP API manually
 ```bash
 uvicorn scripts.mock_dsp_api:app --reload --port 8000
 ```
 
-### Run the submission enginer
+### Run the submission enginer manually
 ```bash
-python event-stream-processor/pipeline/ --file dsp_merged_data.csv
+python event-stream-processor/pipeline/main.py --file dsp_merged_data.csv
 # or
-python event-stream-processor/pipeline/ --line  '{"campaign_id": "cmp_2025_004", "campaign_name": "Autumn Styles 2024", "campaign_budget": 21000, "start_date": "2024-09-01", "end_date": "2024-10-15", "objective": "video_views", "ad_groups": [ { "id": "ag_1003", "name": "Adults - City", "bid":4.0, "targeting_ages": "35-44;45-64", "targeting_interests": "fashion;streetwear", "targeting_geo": "UK;IE", "ads": [ { "id": "ad_6001","type": "video","creative_url": "https://cdn.example.com/creatives/autumn_style_city.jpg", "click_url": "https://shop.example.com/city-autumn", "status": "new" }]}]}'
+python event-stream-processor/pipeline/main.py --line  '{"campaign_id": "cmp_2025_004", "campaign_name": "Autumn Styles 2024", "campaign_budget": 21000, "start_date": "2024-09-01", "end_date": "2024-10-15", "objective": "video_views", "ad_groups": [ { "id": "ag_1003", "name": "Adults - City", "bid":4.0, "targeting_ages": "35-44;45-64", "targeting_interests": "fashion;streetwear", "targeting_geo": "UK;IE", "ads": [ { "id": "ad_6001","type": "video","creative_url": "https://cdn.example.com/creatives/autumn_style_city.jpg", "click_url": "https://shop.example.com/city-autumn", "status": "new" }]}]}'
 ```
 
 ### Run mocked script to generate dummy data csv file
