@@ -1,6 +1,12 @@
 # Use official Python base image
 FROM python:3.11-slim
 
+ARG APP_PORT
+ARG APP_HOST
+
+ENV APP_HOST=0.0.0.0
+ENV APP_PORT=80
+
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
@@ -30,7 +36,11 @@ RUN poetry config virtualenvs.create false && \
 COPY . .
 
 # Expose FastAPI port
-EXPOSE 8000
+EXPOSE ${APP_PORT}
+
+RUN echo ${APP_PORT}
+
+ENTRYPOINT ["sh", "-c"]
 
 # Start the FastAPI app using Uvicorn
-CMD ["uvicorn", "scripts.mock_dsp_api:app ", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn scripts.mock_dsp_api:app --host $APP_HOST --port $APP_PORT"]

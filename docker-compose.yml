@@ -1,13 +1,16 @@
 version: '3.9'
 
 services:
-  web:
+  server_api:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        APP_PORT: ${APP_PORT}
+        APP_HOST: ${APP_HOST}
     container_name: fastapi_app
     ports:
-      - "8000:8000"
+      - "$APP_PORT:$APP_PORT"
     depends_on:
       - db
     environment:
