@@ -18,7 +18,7 @@ This project simulates a simplified demand-side platform (DSP) workflow for digi
 
 ## High-Level Architecture
 
-This the high level of the demmand_link component architecture.
+This the high level of the components for the architecture.
 
 ![alt text](misc/image.png)
 
@@ -103,7 +103,9 @@ docker-compose up --build
 ```
 
 Access the API at:
+```
 http://localhost:8000
+```
 
 
 ## Running the application (manually on terminal)

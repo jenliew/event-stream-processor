@@ -6,9 +6,11 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        APP_PORT: ${APP_PORT}
-        APP_HOST: ${APP_HOST}
+        APP_PORT: $APP_PORT
+        APP_HOST: $APP_HOST
     container_name: fastapi_app
+    env_file:
+      - .env
     ports:
       - "$APP_PORT:$APP_PORT"
     depends_on:

@@ -4,8 +4,8 @@ FROM python:3.11-slim
 ARG APP_PORT
 ARG APP_HOST
 
-ENV APP_HOST=0.0.0.0
-ENV APP_PORT=80
+ENV APP_HOST="0.0.0.0"
+ENV APP_PORT="80"
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -38,9 +38,6 @@ COPY . .
 # Expose FastAPI port
 EXPOSE ${APP_PORT}
 
-RUN echo ${APP_PORT}
+RUN echo ${APP_PORT} ${APP_HOST}
 
-ENTRYPOINT ["sh", "-c"]
-
-# Start the FastAPI app using Uvicorn
-CMD ["uvicorn scripts.mock_dsp_api:app --host $APP_HOST --port $APP_PORT"]
+CMD uvicorn scripts.mock_dsp_api:app --host ${APP_HOST} --port ${APP_PORT}
