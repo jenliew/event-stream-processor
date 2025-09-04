@@ -1,5 +1,30 @@
 from enum import Enum
 
+from pydantic.v1 import BaseSettings
+
+
+class Settings(BaseSettings):
+    postgres_user: str = "DEFAULT_USER"
+    postgres_password: str = "DEFAULT_PASSWORD"
+    database_host: str = "localhost"
+    database_port: str = "localhost"
+    database_name: str = "DB_NAME"
+    database_host: str = "DB_NAME"
+    database_url: str = "localhost"
+
+    class Config:  # type: ignore
+        env_file = ".env"
+
+
+settings = Settings()
+
+DATABASE_URL = (
+    f"postgresql+asyncpg://{settings.postgres_user}:"
+    f"{settings.postgres_password}"
+    f"@{settings.database_url}/{settings.database_name}"
+)
+
+print(f"--> database_url: {DATABASE_URL}")
 DEFAULT_RATE_LIMIT = 40  # Max requests per minute
 DEFAULT_URL_API_STR = "127.0.0.1:8000"
 MAX_RETRIES = 3
