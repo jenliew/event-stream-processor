@@ -24,7 +24,6 @@ DATABASE_URL = (
     f"@{settings.database_url}/{settings.database_name}"
 )
 
-print(f"--> database_url: {DATABASE_URL}")
 DEFAULT_RATE_LIMIT = 40  # Max requests per minute
 DEFAULT_URL_API_STR = "127.0.0.1:8000"
 MAX_RETRIES = 3
